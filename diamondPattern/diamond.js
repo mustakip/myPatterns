@@ -1,5 +1,5 @@
-const createDiamond = require("./diamond_functions_library.js").createDiamond;
-const createAngledDiamond = require("./diamond_functions_library.js").createAngledDiamond;
+const createDiamond = require("./diamond_library.js").createDiamond;
+const createAngledDiamond = require("./diamond_library.js").createAngledDiamond;
 
 const main = function() {
   let width = process.argv[3];

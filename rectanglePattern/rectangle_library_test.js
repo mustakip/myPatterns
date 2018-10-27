@@ -1,5 +1,5 @@
 const assert = require("assert");
-const lib = require("./rectangle_functions_library.js");
+const lib = require("./rectangle_library.js");
 
 // Test for filled rectangle pattern.
 assert.deepEqual(lib.createFilledRectangle(1,2),"*\n*");
