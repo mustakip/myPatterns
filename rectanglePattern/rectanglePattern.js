@@ -1,4 +1,4 @@
-let {createFilledRectangle,createEmptyRectangle,createAlternateRectangle} = require("./rectangle_library.js");
+let {createFilledRectangle,createEmptyRectangle,createAlternateRectangle} = require("./rectangle_functions_library.js");
 
 const main = function() {
   let designType = process.argv[2];
