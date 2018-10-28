@@ -65,7 +65,20 @@ const makeFilledRectangle = function(symbol,width,height) {
   return pattern.join("\n");
 }
 
-exports.createAlternateRectangle = createAlternateRectangle;
-exports.createEmptyRectangle = createEmptyRectangle;
-exports.createFilledRectangle = createFilledRectangle;
-exports.makeFilledRectangle = makeFilledRectangle;
+const createRectangle = function(rectangleType,width,height) {
+  let rectanglePattern;
+  if(rectangleType == "alternating") {
+    rectanglePattern = createAlternateRectangle(width,height).join("\n");
+  }
+
+  if(rectangleType == "empty") {
+    rectanglePattern = createEmptyRectangle(width,height).join("\n");
+  }
+
+  if(rectangleType == "filled") {
+    rectanglePattern = createFilledRectangle(width,height);
+  }
+  return rectanglePattern;
+}
+
+exports.createRectangle = createRectangle;

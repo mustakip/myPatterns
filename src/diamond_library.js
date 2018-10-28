@@ -72,7 +72,7 @@ const createAngledDiamond = function(width) {
   return pattern;
 }
 
-const createDiamond = function(width) {
+const generateDiamond = function(width) {
   let delimiter = "";
   let pattern = "";
   let typeOfDiamond;
@@ -94,6 +94,18 @@ const createDiamond = function(width) {
   return pattern;
 }
 
+const createDiamond = function(diamondType,width) {
+  let diamondPattern;
+  if(width % 2 ==0) {
+    width -= 1;
+  }
+  if(diamondType == "hollow" || diamondType == "filled") {
+    diamondPattern = (generateDiamond(width));
+  }
+  if(diamondType == "angled") {
+    diamondPattern = (createAngledDiamond(width));
+  }
+  return diamondPattern;
+}
 
 exports.createDiamond = createDiamond;
-exports.createAngledDiamond = createAngledDiamond;
