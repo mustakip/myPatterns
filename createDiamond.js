@@ -1,4 +1,4 @@
-const createDiamond = require("./src/diamond_library.js").createDiamond;
+const createDiamond = require("./src/pattern_library.js").createDiamond;
 
 const main = function() {
   let width = process.argv[3];

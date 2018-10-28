@@ -1,4 +1,4 @@
-const generateTriangle = require("./src/triangle_library.js").generateTriangle;
+const generateTriangle = require("./src/pattern_library.js").generateTriangle;
 
 const main = function() {
   type = process.argv[2];

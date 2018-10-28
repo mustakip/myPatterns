@@ -1,4 +1,4 @@
-const createRectangle = require("./src/rectangle_library.js").createRectangle;
+const createRectangle = require("./src/pattern_library.js").createRectangle;
 
 const main = function() {
   let rectangleType = process.argv[2];
