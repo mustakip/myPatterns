@@ -63,11 +63,15 @@ exports.createlowerSlash = createlowerSlash;
 //-------------------------------------------------------------------------------------------//
 const generateHollowLine = function(edgeSymbol,length) {
   let hollowLineArray = [];
+  if(length > 0){
   hollowLineArray.push(edgeSymbol);
+  }
   for(let index = 1; index < length-1; index++) {
     hollowLineArray[index] = " "; 
   }
+  if(length > 1){
   hollowLineArray.push(edgeSymbol)
+  }
   return hollowLineArray;
 }
 exports.generateHollowLine = generateHollowLine;
@@ -81,7 +85,7 @@ const repeatSymbol = function(symbol,width) {
 }
 exports.repeatSymbol = repeatSymbol;
 //------------------------------------------------------------------------------------------//
-const generateStarMark = function(height,line) {
+const generateStarMark = function(type,height,line) {
   linePattern = "";
   for(mark = 1; mark <= height ; mark++) {
     symbol = "*";

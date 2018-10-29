@@ -1,31 +1,37 @@
-let library = require("./pattern_util.js");
-let {generateStarMark,repeatSymbol,generateHollowLine} = library;
-let {createlowerSlash,createHollowMark,createStarMark} = library;
-let {createUpperSlash} = library;
+let util = require("./pattern_util.js");
+let {generateStarMark,repeatSymbol,generateHollowLine} = util;
+let {createlowerSlash,createHollowMark,createStarMark} = util;
+let {createUpperSlash} = util;
 
 const createAngledDiamond = function(width) {
   let delimiter = "";
   let pattern = "";
+  if(width > 0){
   pattern += delimiter+createStarMark(1,width);
+  }
   delimiter = "\n";
   for(let numberOfStars = 3; numberOfStars < width; numberOfStars+= 2) {
     pattern += delimiter+createUpperSlash(numberOfStars,width);
   }
+  if(width > 2){
   pattern += delimiter+createHollowMark(width,width);
+  }
   for(let numberOfStars = width -2;numberOfStars > 1;numberOfStars-=2){
     pattern += delimiter+createlowerSlash(numberOfStars,width);
   }
+  if(width > 1) {
   pattern += delimiter+createStarMark(1,width);
+  }
   return pattern;
 }
 
-const generateDiamond = function(width) {
+const generateDiamond = function(diamondType,width) {
   let delimiter = "";
   let pattern = "";
   let typeOfDiamond;
   for(let numberOfStars = 1; numberOfStars <=width; numberOfStars+= 2) {
     typeOfDiamond = createHollowMark(numberOfStars,width);
-    if(process.argv[2] == "filled") {
+    if(diamondType == "filled") {
       typeOfDiamond = createStarMark(numberOfStars,width);
     }
     pattern += delimiter+typeOfDiamond;
@@ -33,7 +39,7 @@ const generateDiamond = function(width) {
   }
   for(let numberOfStars = width - 2;numberOfStars > 0;numberOfStars-=2){
     typeOfDiamond = createHollowMark(numberOfStars,width);
-    if(process.argv[2] == "filled") {
+    if(diamondType == "filled") {
       typeOfDiamond = createStarMark(numberOfStars,width);
     }
     pattern += delimiter+typeOfDiamond;
@@ -47,7 +53,7 @@ const createDiamond = function(diamondType,width) {
     width -= 1;
   }
   if(diamondType == "hollow" || diamondType == "filled") {
-    diamondPattern = (generateDiamond(width));
+    diamondPattern = (generateDiamond(diamondType,width));
   }
   if(diamondType == "angled") {
     diamondPattern = (createAngledDiamond(width));
@@ -107,16 +113,16 @@ const createRectangle = function(rectangleType,width,height) {
 
 //-----------------------------------------------------------------------------------------------------------------------//
 
-const generateTriangle = function(type,height) {
+const createTriangle = function(type,height) {
   let patterns = "";
   let delimiter = "";
   for(line = 1; line <= height; line++){
-    patterns = patterns+delimiter+generateStarMark(height,line);
+    patterns = patterns+delimiter+generateStarMark(type,height,line);
     delimiter = "\n";
   }
   return patterns;
 }
 
-exports.generateTriangle = generateTriangle;
+exports.createTriangle = createTriangle;
 exports.createRectangle = createRectangle;
 exports.createDiamond = createDiamond;
