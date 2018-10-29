@@ -47,7 +47,8 @@ const generateDiamond = function(diamondType,width) {
   return pattern;
 }
 
-const createDiamond = function(diamondType,width) {
+const createDiamond = function(inputArguments) {
+  let {diamondType,width} = inputArguments;
   let diamondPattern;
   if(width % 2 ==0) {
     width -= 1;
@@ -95,7 +96,8 @@ const createAlternateRectangle = function(width,height) {
   return pattern;
 }
 
-const createRectangle = function(rectangleType,width,height) {
+const createRectangle = function(inputArguments) {
+  let {rectangleType,width,height} = inputArguments;
   let rectanglePattern;
   if(rectangleType == "alternating") {
     rectanglePattern = createAlternateRectangle(width,height).join("\n");
@@ -113,11 +115,12 @@ const createRectangle = function(rectangleType,width,height) {
 
 //-----------------------------------------------------------------------------------------------------------------------//
 
-const createTriangle = function(type,height) {
+const createTriangle = function(inputArguments) {
+  let {triangleType,height} = inputArguments;
   let patterns = "";
   let delimiter = "";
   for(line = 1; line <= height; line++){
-    patterns = patterns+delimiter+generateStarMark(type,height,line);
+    patterns = patterns+delimiter+generateStarMark(triangleType,height,line);
     delimiter = "\n";
   }
   return patterns;

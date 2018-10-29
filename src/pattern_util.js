@@ -101,4 +101,30 @@ const generateStarMark = function(type,height,line) {
   }
   return linePattern;
 }
+
 exports.generateStarMark = generateStarMark;
+//-------------------------------------------------------------------------------------------//
+const extractTriangleArgs = function(inputArray) {
+  let triangleType = inputArray[2];
+  let height = inputArray[3];
+  return {triangleType,height};
+}
+
+exports.extractTriangleArgs = extractTriangleArgs;
+//--------------------------------------------------------------------------------------------//
+const extractRectangleArgs = function(inputArray) {
+  let rectangleType = inputArray[2];
+  let width = inputArray[3]; 
+  let height = inputArray[4];
+  return {rectangleType,width,height};
+}
+
+exports.extractRectangleArgs = extractRectangleArgs;
+//--------------------------------------------------------------------------------------------//
+const extractDiamondArgs = function(inputArray) {
+  let diamondType = inputArray[2];
+  let width = inputArray[3];
+  return {diamondType,width};
+}
+
+exports.extractDiamondArgs = extractDiamondArgs;

@@ -1,10 +1,10 @@
 #! /bin/bash
 
-./scripts/run_test.sh ./createRectangle.js ./app_test_data/input/rectanglePatternInput ./app_test_data/output/rectanglePatternOutput
+./scripts/run_test.sh ./create_rectangle.js ./app_test_data/input/rectangle_input ./app_test_data/output/rectangle_output
 Result1=$?
-./scripts/run_test.sh ./createTriangle.js ./app_test_data/input/triangleInput ./app_test_data/output/triangleOutput
+./scripts/run_test.sh ./create_triangle.js ./app_test_data/input/triangle_input ./app_test_data/output/triangle_output
 Result2=$?
-./scripts/run_test.sh ./createDiamond.js ./app_test_data/input/diamondInput ./app_test_data/output/diamondOutput
+./scripts/run_test.sh ./create_diamond.js ./app_test_data/input/diamond_input ./app_test_data/output/diamond_output
 Result3=$?
 node ./test/library_test.js
 Result4=$?
