@@ -1,26 +1,25 @@
 let util = require("./pattern_util.js");
-let {generateStarMark,repeatSymbol,generateHollowLine} = util;
-let {createlowerSlash,createHollowMark,createStarMark} = util;
-let {createUpperSlash} = util;
+let {justifyFilledLine,repeatSymbol,makeFilledLine} = util;
+let {justifyHollowLine,createStarMark} = util;
 
 const createAngledDiamond = function(width) {
   let delimiter = "";
   let pattern = "";
   if(width > 0){
-  pattern += delimiter+createStarMark(1,width);
+  pattern += delimiter+justifyFilledLine(1,width,"*");
   }
   delimiter = "\n";
   for(let numberOfStars = 3; numberOfStars < width; numberOfStars+= 2) {
-    pattern += delimiter+createUpperSlash(numberOfStars,width);
+    pattern += delimiter+justifyHollowLine(numberOfStars,width,"/","\\");
   }
   if(width > 2){
-  pattern += delimiter+createHollowMark(width,width);
+  pattern += delimiter+justifyHollowLine(width,width,"*","*");
   }
   for(let numberOfStars = width -2;numberOfStars > 1;numberOfStars-=2){
-    pattern += delimiter+createlowerSlash(numberOfStars,width);
+    pattern += delimiter+justifyHollowLine(numberOfStars,width,"\\","/");
   }
   if(width > 1) {
-  pattern += delimiter+createStarMark(1,width);
+  pattern += delimiter+justifyFilledLine(1,width,"*");
   }
   return pattern;
 }
@@ -30,17 +29,17 @@ const generateDiamond = function(diamondType,width) {
   let pattern = "";
   let typeOfDiamond;
   for(let numberOfStars = 1; numberOfStars <=width; numberOfStars+= 2) {
-    typeOfDiamond = createHollowMark(numberOfStars,width);
+    typeOfDiamond = justifyHollowLine(numberOfStars,width,"*","*");
     if(diamondType == "filled") {
-      typeOfDiamond = createStarMark(numberOfStars,width);
+      typeOfDiamond = justifyFilledLine(numberOfStars,width,"*");
     }
     pattern += delimiter+typeOfDiamond;
     delimiter = "\n";
   }
   for(let numberOfStars = width - 2;numberOfStars > 0;numberOfStars-=2){
-    typeOfDiamond = createHollowMark(numberOfStars,width);
+    typeOfDiamond = justifyHollowLine(numberOfStars,width,"*","*");
     if(diamondType == "filled") {
-      typeOfDiamond = createStarMark(numberOfStars,width);
+      typeOfDiamond = justifyFilledLine(numberOfStars,width,"*");
     }
     pattern += delimiter+typeOfDiamond;
   }
@@ -50,16 +49,11 @@ const generateDiamond = function(diamondType,width) {
 const createDiamond = function(inputArguments) {
   let {diamondType,width} = inputArguments;
   let diamondPattern;
-  if(width % 2 ==0) {
-    width -= 1;
-  }
-  if(diamondType == "hollow" || diamondType == "filled") {
-    diamondPattern = (generateDiamond(diamondType,width));
-  }
-  if(diamondType == "angled") {
-    diamondPattern = (createAngledDiamond(width));
-  }
-  return diamondPattern;
+  let filled = generateDiamond("filled",width);
+  let hollow = generateDiamond("hollow",width);
+  let angled = createAngledDiamond(width);
+  let patterns = {filled,hollow,angled};
+  return patterns[diamondType];
 }
 
 //-----------------------------------------------------------------------------------------------------------------------------//
@@ -78,11 +72,12 @@ const createEmptyRectangle = function(width,height) {
     emptyRectangleArray[0] = repeatSymbol("*",width);
   }
   for(let line = 1; line <= (height-2); line++) {
-    emptyRectangleArray[line] = generateHollowLine("*",width).join("");
+    emptyRectangleArray[line] = justifyHollowLine(width,width,"*","*") 
   }
   if(height >= 2){
     emptyRectangleArray.push(repeatSymbol("*",width));
-  } return emptyRectangleArray;
+  } 
+  return (emptyRectangleArray.join("\n"));
 }
 
 const createAlternateRectangle = function(width,height) {
@@ -93,24 +88,16 @@ const createAlternateRectangle = function(width,height) {
       pattern[line] = repeatSymbol("*",width)
     }
   }
-  return pattern;
+  return pattern.join("\n");
 }
 
 const createRectangle = function(inputArguments) {
   let {rectangleType,width,height} = inputArguments;
-  let rectanglePattern;
-  if(rectangleType == "alternating") {
-    rectanglePattern = createAlternateRectangle(width,height).join("\n");
-  }
-
-  if(rectangleType == "empty") {
-    rectanglePattern = createEmptyRectangle(width,height).join("\n");
-  }
-
-  if(rectangleType == "filled") {
-    rectanglePattern = createFilledRectangle(width,height);
-  }
-  return rectanglePattern;
+  let filled = createFilledRectangle(width,height);
+  let empty = createEmptyRectangle(width,height);
+  let alternating = createAlternateRectangle(width,height);
+  let patterns = {filled,empty,alternating};
+  return patterns[rectangleType];
 }
 
 //-----------------------------------------------------------------------------------------------------------------------//
@@ -120,7 +107,7 @@ const createTriangle = function(inputArguments) {
   let patterns = "";
   let delimiter = "";
   for(line = 1; line <= height; line++){
-    patterns = patterns+delimiter+generateStarMark(triangleType,height,line);
+    patterns = patterns+delimiter+makeFilledLine(triangleType,height,line);
     delimiter = "\n";
   }
   return patterns;
