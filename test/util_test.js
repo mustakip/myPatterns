@@ -1,6 +1,6 @@
 const assert = require("assert");
 const util = require("../src/pattern_util.js");
-let {makeFilledLine,repeatSymbol} = util;
+let {makeLineForTriangle,repeatSymbol} = util;
 let {justifyFilledLine,justifyHollowLine} = util;
 let {makeHollowLine} = util;
 
@@ -16,20 +16,19 @@ assert.deepEqual("  /   \\  ",justifyHollowLine(5,9,"/","\\"));
 assert.deepEqual("/   \\",justifyHollowLine(5,5,"/","\\"));
 
 //--------------------Testing repeatSymbol--------------------------//
-assert.deepEqual("",repeatSymbol("*",0));
-assert.deepEqual("*",repeatSymbol("*",1));
-assert.deepEqual("",repeatSymbol("*",-1));
-assert.deepEqual("*****",repeatSymbol("*",5));
+assert.deepEqual("--------",repeatSymbol("-")(8));
+assert.deepEqual("     ",repeatSymbol(" ")(5));
+assert.deepEqual("",repeatSymbol("*")(0));
 
-//--------------------Testing makeFilledLine--------------------------//
-assert.deepEqual("***  ",makeFilledLine("left",5,3));
-assert.deepEqual("  ***",makeFilledLine("right",5,3));
-assert.deepEqual("*****",makeFilledLine("right",5,5));
-assert.deepEqual("*****",makeFilledLine("left",5,5));
-assert.deepEqual("     ",makeFilledLine("left",5,0));
+//--------------------Testing makeLineForTriangle--------------------------//
+assert.deepEqual("***  ",makeLineForTriangle("left",5,3));
+assert.deepEqual("  ***",makeLineForTriangle("right",5,3));
+assert.deepEqual("*****",makeLineForTriangle("right",5,5));
+assert.deepEqual("*****",makeLineForTriangle("left",5,5));
+assert.deepEqual("     ",makeLineForTriangle("left",5,0));
 
 //--------------------Testing makeHollowLine--------------------------//
 assert.deepEqual("*   *",makeHollowLine(5,"*","*"));
-assert.deepEqual("*",makeHollowLine(1,"/","\\"));
+assert.deepEqual("/",makeHollowLine(1,"/","\\"));
 assert.deepEqual("* *",makeHollowLine(3,"*","*"));
 

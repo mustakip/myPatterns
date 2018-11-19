@@ -1,8 +1,8 @@
 const createTriangle = require("./src/pattern_library.js").createTriangle;
-const extractTriangleArgs = require("./src/pattern_util.js").extractTriangleArgs;
+const extractArgs = require("./src/pattern_util.js").extractArgs;
 
 const main = function() {
-  let inputArguments = extractTriangleArgs(process.argv);
+  let inputArguments = extractArgs(process.argv);
   console.log(createTriangle(inputArguments));
 }
 

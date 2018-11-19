@@ -1,8 +1,8 @@
 const createDiamond = require("./src/pattern_library.js").createDiamond;
-const extractDiamondArgs = require("./src/pattern_util.js").extractDiamondArgs;
+const extractArgs = require("./src/pattern_util.js").extractArgs;
 
 const main = function() {
-  let inputArguments = extractDiamondArgs(process.argv);
+  let inputArguments = extractArgs(process.argv);
   console.log(createDiamond(inputArguments));
 }
 

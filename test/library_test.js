@@ -6,12 +6,12 @@ const makeObjectForRectangle = function(rectangleType,width,height) {
   return {rectangleType,width,height};
 }
 
-const makeObjectForDiamond = function(diamondType,width) {
-  return {diamondType,width};
+const makeObjectForDiamond = function(patternType,height) {
+  return {patternType,height};
 }
 
-const makeObjectForTriangle = function(triangleType,height) {
-  return {triangleType,height};
+const makeObjectForTriangle = function(patternType,height) {
+  return {patternType,height};
 }
 
 // Testing createDiamond for filled type -------------------//
